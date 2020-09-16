@@ -1,4 +1,4 @@
-node('jnlp-agent') {
+node('jenkins-slave') {
     stage('Prepare') {
         echo "1.Prepare Stage"
         checkout scm
