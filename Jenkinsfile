@@ -13,8 +13,12 @@ node('jenkins-slave') {
       echo "2.Test Stage"
     }
     stage('Build') {
-        echo "3.Build Docker Image Stage"
-        sh "docker build -t cnych/jenkins-demo:${build_tag} ."
+	 container('docker') {
+                echo "3、开始读取Maven pom变量，并执行Docker编译、推送、删除"
+                 sh "docker build -t cnych/jenkins-demo:${build_tag} ."
+            }
+
+
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
